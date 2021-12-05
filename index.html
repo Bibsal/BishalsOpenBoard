@@ -32,18 +32,20 @@
     // this below line gives you the tool to draw on that canvas
     let tool = canvasBoard.getContext("2d");    // canvas me draw karne k liye ye line likhna parega(variableInWhichTheCanvasTagIsGrabbed.getContext("2d")); 2d is just the dimension i.e two dimension
     // rectangle build 
+    tool.fillStyle = "purple";         // fillStyle() function is used before creating the rectangle and it's used to color the rectangle as the default color is black, but by using fillStyle (tool.fillStyle ="colorName";) we can easily change the color
     tool.rect(0, 155, 300, 150);   // rect()	creates a rectangle     // tool.fillReact(startCoordinate, endCoordinate, width, height);     
     tool.strokeRect(0, 0, 300, 150);   // strokeRect()	Draws a border of rectangle(no filled)      // tool.strokeRect(startCoordinate, endCoordinate, width, height);     
     tool.fillRect(305, 0, 300, 150);   // fillRect()	Draws a "filled" rectangle   (default color is black   // tool.fillReact(startCoordinate, endCoordinate, width, height);     
     tool.clearRect(425, 40, 50, 5);    //   clearRect()	Clears the specified pixels within a given rectangle   // tool.fillReact(startCoordinate, endCoordinate, width, height);     
     tool.clearRect(425, 70, 50, 5);    //   clearRect()	Clears the specified pixels within a given rectangle   // tool.fillReact(startCoordinate, endCoordinate, width, height);     
     tool.clearRect(425, 100, 50, 5);   //   clearRect()	Clears the specified pixels within a given rectangle   // tool.fillReact(startCoordinate, endCoordinate, width, height);     
+
+    tool.fillStyle = "red";  // fillStyle() function is used before creating the rectangle and it's used to color the rectangle as the default color is black, but by using fillStyle (tool.fillStyle ="colorName";) we can easily change the color
     // Below one is personal for me
     tool.fillRect(0, 155, 300, 150);   // fillRect()	Draws a "filled" rectangle   (default color is black   // tool.fillReact(startCoordinate, endCoordinate, width, height);     
     tool.clearRect(120, 230, 50, 5);    //   clearRect()	Clears the specified pixels within a given rectangle   // tool.fillReact(startCoordinate, endCoordinate, width, height);     
     tool.clearRect(120, 200, 5, 65);    //   clearRect()	Clears the specified pixels within a given rectangle   // tool.fillReact(startCoordinate, endCoordinate, width, height);     
     tool.clearRect(170, 200, 5, 65);   //   clearRect()	Clears the specified pixels within a given rectangle   // tool.fillReact(startCoordinate, endCoordinate, width, height);     
-
 
 </script>
 
