@@ -1,5 +1,19 @@
 <!-- In this project we're creating an openBoard where we can draw, write and do everything that is done in a digital board -->
 
+<!-- Below are the points that we've mainly learnt in this code snippet :-
+1.-> Canvas (used to draw anything in the html page)
+2.-> window.innerHeight; (used to assign the height for the board of canvas)
+3.-> window.innerWidth;  (used to assign the width for the board of canvas)
+4.-> getContext("2d");  (used to make the canvas working, like canvas me draw karne k liye ye line likhna parega)
+5.-> rect()	(used to create a rectangle)
+6.-> strokeRect()  -> Draws a border of rectangle(no filled)   // tool.strokeRect(startCoordinate, endCoordinate, width, height);
+7.-> fillRect()	Draws a "filled" rectangle   (default color is black   // tool.fillReact(startCoordinate, endCoordinate, width, height);
+8.-> clearRect()	Clears the specified pixels within a given rectangle   // tool.fillReact(startCoordinate, endCoordinate, width, height);
+9.-> fillStyle() function is used before creating the rectangle and it's used to color the rectangle (as the default color is black), but by using fillStyle (tool.fillStyle ="colorName";) we can easily change the color of the shape to our desired color.
+10-> strokeStyle() function is used before creating the rectangle with boundaries and it's used to color the boundaries of rectangle as the default color is black, but by using strokeStyle (tool.strokeStyle ="colorName";) we can easily change the color of the boundary of the rectangle;
+11->  -->
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -30,7 +44,7 @@
     // canvasBoard.width = 600;
 
     // this below line gives you the tool to draw on that canvas
-    let tool = canvasBoard.getContext("2d");    // canvas me draw karne k liye ye line likhna parega(variableInWhichTheCanvasTagIsGrabbed.getContext("2d")); 2d is just the dimension i.e two dimension
+    let tool = canvasBoard.getContext("2d");    // canvas me draw karne k liye ye line likhna parega(variableInWhichTheCanvasTagIsGrabbed.getContext("2d")); 2d is just the dimension i.e two dimension me sara kam/work/drawings hongi
     // rectangle build 
     tool.fillStyle = "purple";         // fillStyle() function is used before creating the rectangle and it's used to color the rectangle as the default color is black, but by using fillStyle (tool.fillStyle ="colorName";) we can easily change the color
     tool.rect(0, 155, 300, 150);   // rect()	creates a rectangle     // tool.fillReact(startCoordinate, endCoordinate, width, height);     
@@ -43,13 +57,42 @@
     tool.fillStyle = "red";  // fillStyle() function is used before creating the rectangle and it's used to color the rectangle as the default color is black, but by using fillStyle (tool.fillStyle ="colorName";) we can easily change the color
     // Below one is personal for me
     tool.fillRect(0, 155, 300, 150);   // fillRect()	Draws a "filled" rectangle   (default color is black   // tool.fillReact(startCoordinate, endCoordinate, width, height);     
-    tool.clearRect(120, 230, 50, 5);    //   clearRect()	Clears the specified pixels within a given rectangle   // tool.fillReact(startCoordinate, endCoordinate, width, height);     
-    tool.clearRect(120, 200, 5, 65);    //   clearRect()	Clears the specified pixels within a given rectangle   // tool.fillReact(startCoordinate, endCoordinate, width, height);     
+    tool.clearRect(120, 230, 50, 5);   //   clearRect()	Clears the specified pixels within a given rectangle   // tool.fillReact(startCoordinate, endCoordinate, width, height);     
+    tool.clearRect(120, 200, 5, 65);   //   clearRect()	Clears the specified pixels within a given rectangle   // tool.fillReact(startCoordinate, endCoordinate, width, height);     
     tool.clearRect(170, 200, 5, 65);   //   clearRect()	Clears the specified pixels within a given rectangle   // tool.fillReact(startCoordinate, endCoordinate, width, height);     
 
     tool.strokeStyle = "lime";     // strokeStyle() function is used before creating the rectangle with boundaries and it's used to color the boundaries of rectangle as the default color is black, but by using strokeStyle (tool.strokeStyle ="colorName";) we can easily change the color of the boundary of the rectangle;
     tool.strokeRect(305, 155, 299, 149);   // strokeRect()	Draws a border of rectangle(no filled)      // tool.strokeRect(startCoordinate, endCoordinate, width, height);     
 
+
+    /* Now in an open board we have to draw lines right, 
+    so to draw lines our screen should know where we've pressed in the screen and where we're leaving the pressed mouse or pointer
+    ki kaha sae kaha tak pen chalega iske liye hame starting + ending point tho pta hona chaiye,
+    like if we want to draw a straight line so for that our screen should know the starting point(i.e when is the mouse pressed) and also the ending point(i.e where the mouse is left taki waha tak ak line draw ho jai)
+    so for the screen to know ki user ne kaha par starting and ending press kiya hai so for that we have EventListener in javaScript which works for both starting and ending point
+    we just need to use[-> addEventListener("mousedown") <--this mousedown means ki screen understand krega ki we have pressed the mouse and now form there it is the starting point of the mouse] this works for every events(like pressing of mouse, keyboard, microphone etc) but here we're only using to check the event(starting and ending point) of the mouse
+    we just need to use[-> addEventListener("mouseup") <--this mouseup means ki screen understand krega ki we have left the mouse and now till here the line must be drawn] this works for every events(like pressing of mouse, keyboard, microphone etc) but here we're only using to check the event(starting and ending point) of the mouse
+    so inside it we use logic and in that we use clientX and clientY (to know the starting coordinate of x and y (jaise graph me hota hai x and y likewise to know the starting coordinates of x and y))
+    So To IDENTIFY THE PRESSING AND RELEASING ON THE SCREEN WE DO THE BELOW JAVASCRIPT CODE
+    */
+    let bodyPressing = document.querySelector("body");    // we're working on the body so we're grabbing the body in this line and assigning it to the bodyPressing variable and working with it by adding the EventListener for mousedown and mouseup, so that everything happens in the body.
+    //below we're doing to get the starting point coordinate of x and y
+    bodyPressing.addEventListener("mousedown", function (e) {
+        // alert("mouse was pressed on the body");
+        // console.log(e);
+        let xPosition = e.clientX;      // here in the xPosition variable we're assigning the starting point coordinate of x using [-->  object.clientX ]
+        let yPosition = e.clientY;      // here in the yPosition variable we're assigning the starting point coordinate of y using [-->  object.clientY ]
+        console.log(xPosition, yPosition);   // and just for the verification we're printing the starting coordinates of x and y which we had stored above..
+    })
+
+    //below we're doing to get the ending point coordinate of x and y
+    bodyPressing.addEventListener("mouseup", function (e) {
+        // alert("mouse was released from the body");
+        // console.log(e);
+        let endingXPosition = e.clientX;   // here in the endingXPosition variable we're assigning the ending point coordinate of x using [-->  object.clientX ]
+        let endingYPosition = e.clientY;   // here in the endingYPosition variable we're assigning the ending point coordinate of y using [-->  object.clientY ]
+        console.log(endingXPosition, endingYPosition);   // and just for the verification we're printing the ending coordinates of x and y which we had stored above..
+    })
 </script>
 
 </html>
