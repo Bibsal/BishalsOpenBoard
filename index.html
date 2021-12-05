@@ -16,6 +16,7 @@
     <!--In above line we are Passing values via inline css-->
     <!-- Now below we're Drawing Board using canvas -->
     <!-- Canvas is used for making a board for drawing anything,writing anything, basically for graphics -->
+    <!-- Kisi bhi html page me agar tumhe drawing karni hai tho tum wo chij canvas tag use karke kar skte ho -->
     <canvas></canvas>
     <!-- Just by writing this canvas tag our board will be made on the screen and below we will grab this canvas tag in the internal javascript using the document keyword of the dom and also use the querySelector and by it we'll grab the canvas and start working on the board -->
 </body>
@@ -23,8 +24,8 @@
 <script>
     let canvasBoard = document.querySelector("canvas");
     // default height and width is smaller for the canvas so to cover the whole screen we use the window height and width(i.e used in the below two lines)
-    canvasBoard.height = window.innerHeight;
-    canvasBoard.width = window.innerWidth;
+    canvasBoard.height = window.innerHeight;    // window full screen ko bolte hai, aaur usme ak property hoti hai which is said as innerHeight by which we get the height of page
+    canvasBoard.width = window.innerWidth;      // window full screen ko bolte hai, aaur usme ak property hoti hai which is said as innerWidth by which we get the width of page
     // this below line gives you the tool to draw on that canvas
     let tool = canvasBoard.getContext("2d");    // canvas me draw karne k liye ye line likhna parega(variableInWhichTheCanvasTagIsGrabbed.getContext("2d")); 2d is just the dimension i.e two dimension
     // rectangle build 
