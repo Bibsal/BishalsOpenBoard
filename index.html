@@ -1,0 +1,46 @@
+<!-- In this project we're creating an openBoard where we can draw, write and do everything that is done in a digital board -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Knowing Canvas</title>
+</head>
+
+<body>
+    <h1>Canvas Example</h1>
+    <!-- <canvas id="myCanvas" width="100" height="100"></canvas>     ( <-- this is also a way to make a canvas ) -->
+    <!--In above line we are Passing values via inline css-->
+    <!-- Now below we're Drawing Board using canvas -->
+    <!-- Canvas is used for making a board for drawing anything,writing anything, basically for graphics -->
+    <canvas></canvas>
+    <!-- Just by writing this canvas tag our board will be made on the screen and below we will grab this canvas tag in the internal javascript using the document keyword of the dom and also use the querySelector and by it we'll grab the canvas and start working on the board -->
+</body>
+<!-- Below we're injecting javascript in this html file using Internal Javascript -->
+<script>
+    let canvasBoard = document.querySelector("canvas");
+    // default height and width is smaller for the canvas so to cover the whole screen we use the window height and width(i.e used in the below two lines)
+    canvasBoard.height = window.innerHeight;
+    canvasBoard.width = window.innerWidth;
+    // this below line gives you the tool to draw on that canvas
+    let tool = canvasBoard.getContext("2d");    // canvas me draw karne k liye ye line likhna parega(variableInWhichTheCanvasTagIsGrabbed.getContext("2d")); 2d is just the dimension i.e two dimension
+    // rectangle build 
+    tool.rect(0, 155, 300, 150);   // rect()	creates a rectangle     // tool.fillReact(startCoordinate, endCoordinate, width, height);     
+    tool.strokeRect(0, 0, 300, 150);   // strokeRect()	Draws a border of rectangle(no filled)      // tool.strokeRect(startCoordinate, endCoordinate, width, height);     
+    tool.fillRect(305, 0, 300, 150);   // fillRect()	Draws a "filled" rectangle   (default color is black   // tool.fillReact(startCoordinate, endCoordinate, width, height);     
+    tool.clearRect(425, 40, 50, 5);    //   clearRect()	Clears the specified pixels within a given rectangle   // tool.fillReact(startCoordinate, endCoordinate, width, height);     
+    tool.clearRect(425, 70, 50, 5);    //   clearRect()	Clears the specified pixels within a given rectangle   // tool.fillReact(startCoordinate, endCoordinate, width, height);     
+    tool.clearRect(425, 100, 50, 5);   //   clearRect()	Clears the specified pixels within a given rectangle   // tool.fillReact(startCoordinate, endCoordinate, width, height);     
+    // Below one is personal for me
+    tool.fillRect(0, 155, 300, 150);   // fillRect()	Draws a "filled" rectangle   (default color is black   // tool.fillReact(startCoordinate, endCoordinate, width, height);     
+    tool.clearRect(120, 230, 50, 5);    //   clearRect()	Clears the specified pixels within a given rectangle   // tool.fillReact(startCoordinate, endCoordinate, width, height);     
+    tool.clearRect(120, 200, 5, 65);    //   clearRect()	Clears the specified pixels within a given rectangle   // tool.fillReact(startCoordinate, endCoordinate, width, height);     
+    tool.clearRect(170, 200, 5, 65);   //   clearRect()	Clears the specified pixels within a given rectangle   // tool.fillReact(startCoordinate, endCoordinate, width, height);     
+
+
+</script>
+
+</html>
