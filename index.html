@@ -22,6 +22,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Knowing Canvas</title>
+    <style>
+        body {
+            margin: 0px;
+        }
+    </style>
 </head>
 
 <body>
@@ -77,21 +82,30 @@
     */
     let bodyPressing = document.querySelector("body");    // we're working on the body so we're grabbing the body in this line and assigning it to the bodyPressing variable and working with it by adding the EventListener for mousedown and mouseup, so that everything happens in the body.
     //below we're doing to get the starting point coordinate of x and y
+    let iX, iY, fX, fY;  // defining these outside as we need to use it in different callback functions
     bodyPressing.addEventListener("mousedown", function (e) {
         // alert("mouse was pressed on the body");
         // console.log(e);
-        let xPosition = e.clientX;      // here in the xPosition variable we're assigning the starting point coordinate of x using [-->  object.clientX ]
-        let yPosition = e.clientY;      // here in the yPosition variable we're assigning the starting point coordinate of y using [-->  object.clientY ]
-        console.log(xPosition, yPosition);   // and just for the verification we're printing the starting coordinates of x and y which we had stored above..
+        // let xPosition = e.clientX;      // here in the xPosition variable we're assigning the starting point coordinate of x using [-->  object.clientX ]
+        // let yPosition = e.clientY;      // here in the yPosition variable we're assigning the starting point coordinate of y using [-->  object.clientY ]
+        // console.log(xPosition, yPosition);   // and just for the verification we're printing the starting coordinates of x and y which we had stored above..
+        iX = e.clientX;
+        iY = e.clientY;
     })
 
     //below we're doing to get the ending point coordinate of x and y
     bodyPressing.addEventListener("mouseup", function (e) {
         // alert("mouse was released from the body");
         // console.log(e);
-        let endingXPosition = e.clientX;   // here in the endingXPosition variable we're assigning the ending point coordinate of x using [-->  object.clientX ]
-        let endingYPosition = e.clientY;   // here in the endingYPosition variable we're assigning the ending point coordinate of y using [-->  object.clientY ]
-        console.log(endingXPosition, endingYPosition);   // and just for the verification we're printing the ending coordinates of x and y which we had stored above..
+        // let endingXPosition = e.clientX;   // here in the endingXPosition variable we're assigning the ending point coordinate of x using [-->  object.clientX ]
+        // let endingYPosition = e.clientY;   // here in the endingYPosition variable we're assigning the ending point coordinate of y using [-->  object.clientY ]
+        // console.log(endingXPosition, endingYPosition);   // and just for the verification we're printing the ending coordinates of x and y which we had stored above..
+        fX = e.clientX;
+        fY = e.clientY;
+        let width = fX - iX;
+        let height = fY - iY;
+        tool.strokeStyle = "blue";
+        tool.strokeRect(iX, iY, width, height);
     })
 </script>
 
