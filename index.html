@@ -26,9 +26,17 @@
         body {
             margin: 0px;
         }
-        </style>
-        <!-- So now below you need to add the cdn link, so that the icons that you've imported from fontAwesome website, it will only be displayed on the screen when we add this cdn -->
-        <link rel="stylesheet" href = "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+        .fas {
+            font-size: 2rem;
+            /* margin-right: 30px;
+            margin-left: 30px; */
+            margin: 0px 30px;
+            /*upar k dono line ka kam ye line akele kar deta hai, like if we only write margin then we can give it value top right bottom left or top + bottom  --  right + left(this is what we've done in these two lines*/
+        }
+    </style>
+    <!-- So now below you need to add the cdn link, so that the icons that you've imported from fontAwesome website, it will only be displayed on the screen when we add this cdn -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 
 <body>
@@ -38,14 +46,19 @@
     <!-- Now below we're Drawing Board using canvas -->
     <!-- Canvas is used for making a board for drawing anything,writing anything, basically for graphics -->
     <!-- Kisi bhi html page me agar tumhe drawing karni hai tho tum wo chij canvas tag use karke kar skte ho -->
-    <i class="fas fa-square"></i>      <!--This is square symbol, imported from font Awesome website-->
-    <i class="fas fa-grip-lines-vertical"></i>         <!--This is line symbol, imported from font Awesome website-->
+    <i class="fas fa-square"></i>
+    <!--This above line is square symbol, imported from font Awesome website-->
+    <i class="fas fa-grip-lines-vertical"></i>
+    <!--This is line symbol, imported from font Awesome website-->
     <canvas></canvas>
     <!-- Just by writing this canvas tag our board will be made on the screen and below we will grab this canvas tag in the internal javascript using the document keyword of the dom and also use the querySelector and by it we'll grab the canvas and start working on the board -->
 </body>
 <!-- Below we're injecting javascript in this html file using Internal Javascript -->
 <script>
     let canvasBoard = document.querySelector("canvas");
+    let rectangleTool = document.querySelector(".fa-square");
+    let lineTool = document.querySelector(".fa-grip-lines-vertical");
+    let newIconTool = "rectangleTool";
     // default height and width is smaller for the canvas so to cover the whole screen we use the window height and width(i.e used in the below two lines)
     canvasBoard.height = window.innerHeight;    //// window full screen ko bolte hai, aaur usme ak property hoti hai which is said as innerHeight by which we get the height of page
     canvasBoard.width = window.innerWidth;      //// window full screen ko bolte hai, aaur usme ak property hoti hai which is said as innerWidth by which we get the width of page
@@ -85,6 +98,12 @@
     So To IDENTIFY THE PRESSING AND RELEASING ON THE SCREEN WE DO THE BELOW JAVASCRIPT CODE
     */
     let bodyPressing = document.querySelector("body");    // we're working on the body so we're grabbing the body in this line and assigning it to the bodyPressing variable and working with it by adding the EventListener for mousedown and mouseup, so that everything happens in the body.
+    rectangleTool.addEventListener("click", function() {
+        newIconTool = "rectangleTool";
+    })
+    lineTool.addEventListener("click", function() {
+        newIconTool = "lineTool";
+    })
     //below we're doing to get the starting point coordinate of x and y
     let iX, iY, fX, fY;  // defining these outside as we need to use it in different callback functions
     bodyPressing.addEventListener("mousedown", function (e) {
@@ -108,9 +127,10 @@
         fY = e.clientY;
         let width = fX - iX;
         let height = fY - iY;
-        tool.strokeStyle = "blue";
-        tool.strokeRect(iX, iY, width, height);
-
+        if (newIconTool == "rectangleTool") {
+            tool.strokeStyle = "blue";
+            tool.strokeRect(iX, iY, width, height);
+        }
         // Now we'll take icons, from font awesome website.
 
     })
